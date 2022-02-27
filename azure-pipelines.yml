@@ -14,23 +14,23 @@ variables:
   buildConfiguration: 'Release'
  
 steps:
-# - task: DotNetCoreCLI@2
-#   inputs:
-#     command: 'restore'
-#     projects: |
-#       **/CustomerApi*.csproj
-#       !**/CustomerApi.Database.Build.csproj
-#     feedsToUse: 'select'
-#   displayName: 'Restore Nuget Packages'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: |
+      **/CustomerApi*.csproj
+      !**/CustomerApi.Database.Build.csproj
+    feedsToUse: 'select'
+  displayName: 'Restore Nuget Packages'
  
-# - task: DotNetCoreCLI@2
-#   inputs:
-#     command: 'build'
-#     projects: |
-#       **/CustomerApi*.csproj
-#       !**/CustomerApi.Database.Build.csproj
-#     arguments: '--no-restore'
-#   displayName: 'Build projects'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: |
+      **/CustomerApi*.csproj
+      !**/CustomerApi.Database.Build.csproj
+    arguments: '--no-restore'
+  displayName: 'Build projects'
 
 - task: UseDotNet@2
   inputs:
