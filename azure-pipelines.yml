@@ -14,6 +14,27 @@ variables:
   buildConfiguration: 'Release'
  
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.x'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/CustomerApi.Database.Build.csproj'
+  displayName: 'Restore Nuget Packages'
+ 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/CustomerApi.Database.Build.csproj'
+    arguments: '--no-restore'
+  displayName: 'Build projects'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
@@ -32,22 +53,6 @@ steps:
     arguments: '--no-restore'
   displayName: 'Build projects'
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '3.x'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/CustomerApi.Database.Build.csproj'
-  displayName: 'Restore Nuget Packages'
- 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/CustomerApi.Database.Build.csproj'
-    arguments: '--no-restore'
-  displayName: 'Build projects'
 
 - task: DotNetCoreCLI@2
   inputs:
