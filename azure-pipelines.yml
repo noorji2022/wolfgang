@@ -7,8 +7,8 @@ trigger:
     include:
       - CustomerApi/*
  
-pool:
-  vmImage: 'ubuntu-latest'
+pool: NoorjiPool
+  # vmImage: 'ubuntu-latest'
  
 variables:
   buildConfiguration: 'Release'
